@@ -1,0 +1,3 @@
+#We need to load the library to the dynamic linker as an environment variable before executing the application
+
+$export LD_LIBRARY_PATH="/path/to/sgx_lib"

@@ -1,0 +1,101 @@
+% this TeX file provides an awesome example of how TeX will make super 
+% awesome tables, at the cost of your of what happens when you try to make a
+% table that is very complicated.
+% Originally turned in for Dr. Nico's Security Class
+\documentclass[11pt]{article}
+
+
+
+% Use wide margins, but not quite so wide as fullpage.sty
+\marginparwidth 0.5in 
+\oddsidemargin 0.25in 
+\evensidemargin 0.25in 
+\marginparsep 0.25in
+\topmargin 0.25in 
+\textwidth 6in \textheight 8 in
+% That's about enough definitions
+
+% multirow allows you to combine rows in columns
+\usepackage{multirow}
+% tabularx allows manual tweaking of column width
+\usepackage{tabularx}
+% longtable does better format for tables that span pages
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage[font=small,skip=0pt]{caption}
+
+\begin{document}
+% this is an alternate method of creating a title
+%\hfill\vbox{\hbox{Gius, Mark}
+%       \hbox{Cpe 456, Section 01}  
+%       \hbox{Lab 1}    
+%       \hbox{\today}}\par
+%
+%\bigskip
+%\centerline{\Large\bf Lab 1: Security Audit}\par
+%\bigskip
+\author{Clindo Devassy K, Subhadeep Manna}
+\title{DSP Lab 2016-17, JNI using Intel-SGX}
+\maketitle
+\tableofcontents
+
+\section{Abstract}
+\Abstract{Software applications frequently need to work with private information. The security of these information is crucial. Intel have introduced the Intel® Software Guard Extensions (Intel® SGX). A method to secure our code and data from disclosure. Intel SGX could be coded using C/C++. This project creates a JNI implementation for SGX calls and with those implementation creates an arithmetic evaluator. This arithmetic evaluator can be accessed remotely.\\\\\\\\\\\\}
+
+
+\section{Application Flow}
+
+ \begin{figure}[htb]
+  \begin{center}
+  \includegraphics[width=\linewidth]{FlowDiagram}
+  \caption{Flow Diagram}
+  \end{center}
+  \end{figure}
+\FloatBarrier
+
+\section{Prerequisites}
+\begin{enumerate}
+  \item JDK 1.8 is installed on both client and server 
+  \item The Server should be a SGX enabled machine.
+\end{enumerate}
+\section{SGX Server Usage}
+\begin{enumerate}
+  \item Copy the server side project for SGX
+  \item Run 'make'
+   \item export LD\_LIBRARY\_PATH='/opt/intel/sgxsdk/sdk\_libs/'
+   \item  javac -cp . JavaApp.java
+   \item  java -Djava.library.path=. JavaApp
+\end{enumerate}
+
+\section{Java Client-Server Usage}
+
+\subsection{Server}
+\begin{enumerate}
+\item Copy the file Server.java
+\item Compile it using javac Server.java
+\item Run the server with java Server
+\end{enumerate}
+
+\subsection{Client}
+\begin{enumerate}
+\item Copy Client.java and EncryptionUtil.java to same folder
+\item Compile client using javac Client.java
+\item Run the server with java Client
+\end{enumerate}
+\Java{Note: We have save common erros and its solutions inside the Errors and Troubleshooting directory in the repository}
+\section{Pending tasks}
+\begin{enumerate}
+\item Integrating the java client-server with SGX server
+\item Remote Attestation of the server
+\item Exception Handling in Client-Server Communication
+\end{enumerate}
+
+\section{Questions}
+\begin{enumerate}
+\item Should the public key received by the server be saved in side the enclave or outside the enclave?
+\item Should we transfer the computed result using OCALL outside the enclave? Currently we are just making a test OCALL and printing it directly.
+
+\end{enumerate}
+
+\end{document}

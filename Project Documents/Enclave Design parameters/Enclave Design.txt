@@ -1,0 +1,10 @@
+Designing for Enclaves
+
+
+
+1.Identify the application’s secrets.
+2.Identify the providers and consumers of those secrets.
+3.Determine the enclave boundary.
+4.Tailor the application components for the enclave.
+5.Identify the Application’s Secrets
+

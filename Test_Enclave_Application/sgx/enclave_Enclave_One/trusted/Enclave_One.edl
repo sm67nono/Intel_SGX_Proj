@@ -1,0 +1,18 @@
+/* Enclave_One.edl - Top EDL file. */
+
+enclave {
+    
+    /* 
+     * ocall_Enclave_One_sample - invokes OCALL to display string buffer inside the enclave.
+     *  [in]: copy the string buffer to App outside.
+     *  [string]: specifies 'str' is a NULL terminated buffer.
+     */
+    untrusted {
+        void ocall_Enclave_One_sample([in, string] const char *str);
+    };
+
+
+    trusted {
+    	    public int ecall_Enclave_One_sample();
+    };
+};

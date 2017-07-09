@@ -1,0 +1,41 @@
+#include <stdarg.h>
+#include <stdio.h>
+#include "Arith_Core.h"
+#include "Arith_Core_t.h"  /* print_string */
+
+
+
+
+
+
+
+/*
+ * printf:
+ *   Invokes OCALL to display the enclave buffer to the terminal.
+ */
+void printf(const char *fmt, ...)
+{
+    char buf[BUFSIZ] = {'\0'};
+    va_list ap;
+    va_start(ap, fmt);
+    vsnprintf(buf, BUFSIZ, fmt, ap);
+    va_end(ap);
+    ocall_Arith_Core_sample(buf);
+}
+
+int ecall_Arith_Core_sample()
+{
+  printf("IN ARITH_CORE\n");
+  return 0;
+}
+
+int ecall_Arith_Core(char* inpExpr, char* result, int buffer_size)
+//int ecall_Arith_Core()
+{
+
+
+  printf("Calculating Inside the Enclave. Input Expression: %s :",inpExpr);
+ // printf("\nResult : %d :",entry_Eval(inpExpr));
+  return 0;
+}
+
